@@ -5,8 +5,8 @@
  * Biancka Raxón 24960
  * 
  * Clase: AdaptadorVectorHeap.java
- * Clase que sirve como un adaptador para la implementación VectorHeap, 
- * haciendo que sea compatible con la interfaz IPriorityQueue.
+ * Clase que sirve como un adaptador para la implementación VectorHeap 
+ * con la interfaz IPriorityQueue.
  * 
 */
 
