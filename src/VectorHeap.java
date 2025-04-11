@@ -1,8 +1,10 @@
 import java.util.Vector;
 
 /**
- * Implementación de una PriorityQueue utilizando un heap basado en Vector
+ * Implementación de una cola con prioridad usando un heap basado en Vector.
+ * Esta clase implementa el ADT PriorityQueue definido por la interfaz IPriorityQueue.
  */
+
 public class VectorHeap<E extends Comparable<E>> implements IPriorityQueue<E> {
     private Vector<E> data;
 
