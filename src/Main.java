@@ -11,6 +11,7 @@
 */
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class Main {
     /** 
@@ -19,8 +20,11 @@ public class Main {
     * @param args Argumentos de línea de comando
     */
     public static void main(String[] args) {
-        IPriorityQueue<Paciente> cola = PriorityQueueFactory.crearCola();
-
+        System.out.println("\n¡Bienvenido al programa de atención de emergencias del Hospital Curitas!");
+    
+        Scanner scanner = new Scanner(System.in); 
+        IPriorityQueue<Paciente> cola = PriorityQueueFactory.crearCola(scanner);
+    
         try (BufferedReader br = new BufferedReader(new FileReader("pacientes.txt"))) {
             String linea;
             int orden = 0;
@@ -32,12 +36,31 @@ public class Main {
             }
         } catch (Exception e) {
             System.out.println("Error al leer archivo: " + e.getMessage());
+            scanner.close();
             return;
         }
-
-        System.out.println("Atención de pacientes:");
-        while (!cola.isEmpty()) {
-            System.out.println(cola.remove());
+    
+        String opcion = "";
+        while (!opcion.equals("2") && !cola.isEmpty()) {
+            System.out.println("\nSeleccione lo que desea hacer a continuación: ");
+            System.out.println("1. Atender siguiente paciente");
+            System.out.println("2. Salir");
+            System.out.print("Ingrese una opción: ");
+            opcion = scanner.nextLine();
+    
+            if (opcion.equals("1")) {
+                Paciente paciente = cola.remove();
+                System.out.println("Atendiendo a: " + paciente);
+            } else if (!opcion.equals("2")) {
+                System.out.println("Opción no válida.");
+            }
         }
-    }
+    
+        if (cola.isEmpty()) {
+            System.out.println("Ya no hay pacientes en espera.");
+            System.out.println("Saliendo del programa...");
+        }
+    
+        scanner.close();
+    }    
 }

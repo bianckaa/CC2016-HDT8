@@ -9,7 +9,6 @@
  * o la implementación del Java Collection Framework PriorityQueue.
  * 
 */
-
 import java.util.Scanner;
 
 public class PriorityQueueFactory {
@@ -18,31 +17,29 @@ public class PriorityQueueFactory {
      * 
      * @return una implementación de IPriorityQueue que maneja objetos de tipo Paciente.
      */
-    public static IPriorityQueue<Paciente> crearCola() {
-        Scanner scanner = new Scanner(System.in);
+    public static IPriorityQueue<Paciente> crearCola(Scanner scanner) {
         String opcion = "";
-        
         boolean opcionValida = false;
+    
         while (!opcionValida) {
-            System.out.println("Seleccione el tipo de cola de prioridad:");
+            System.out.println("\nSeleccione el tipo de cola de prioridad a utilizar:");
             System.out.println("1. Implementación propia (VectorHeap)");
-            System.out.println("2. Java Collections (PriorityQueue)");
-            System.out.print("Opción: ");
+            System.out.println("2. Java Collection Framework (PriorityQueue)");
+            System.out.print("Ingrese una opción: ");
             opcion = scanner.nextLine();
-            
+    
             if (opcion.equals("1") || opcion.equals("2")) {
                 opcionValida = true;  
             } else {
                 System.out.println("Error: Por favor, ingrese 1 o 2.");
             }
         }
-        
-        scanner.close();
-        
+    
         if (opcion.equals("1")) {
             return new AdaptadorVectorHeap<Paciente>();
         } else {
             return new AdaptadorMyPriorityQueue<Paciente>();
         }
     }
+    
 }
